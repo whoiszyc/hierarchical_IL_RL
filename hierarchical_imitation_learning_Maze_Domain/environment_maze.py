@@ -129,7 +129,7 @@ class MazeNavigationEnvironment(object):
 
 		# Load the world maps into a dictionary
 		if self._setting == 'maze':
-			self._maps_dict = np.load('maps_16rooms_landmarks.npy').item()
+			self._maps_dict = np.load('maps_16rooms_landmarks.npy', allow_pickle=True).item()
 
 
 		self.stochastic_dynamic = stochastic_dynamic

@@ -27,7 +27,7 @@ from os import path
 from visualizer import Visualizable
 import six
 
-from PIL import Image
+# from PIL import Image
 
 from mdp_obstacles import MazeMDP, value_iteration, best_policy
 
