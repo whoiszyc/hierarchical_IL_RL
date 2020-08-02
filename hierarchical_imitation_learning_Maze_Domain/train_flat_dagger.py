@@ -27,6 +27,13 @@ from os import path
 from visualizer import Visualizable
 import six
 
+# Solution link: https://stackoverflow.com/questions/20060096/installing-pil-with-pip
+# Install
+# pip install Pillow
+# Then, Just import in your file like,
+# from PIL import Image
+# I am using windows. It is working for me.
+
 from PIL import Image
 
 from mdp_obstacles import MazeMDP, value_iteration, best_policy
@@ -341,6 +348,7 @@ class Agent(Visualizable):
 		self.expert_a[0,expert_a] = 1.
 
 		# collect into experience memory
+		# TODO: difference between BC and DAGGER is that DAGGER use warm start in the middle of the training
 		if self.warmstart:
 			#self._a = self.sample(self.expert_a[0])
 			self._a = expert_a
@@ -539,8 +547,8 @@ def main(macro_action, train_or_test, environment, validation):
 	MODEL_NAME = 'go_'+direction+'_'+environment+'_acrossRoom_start_3264256_3channels_'
 
 
-	agent_host = MazeNavigationEnvironment(MazeNavigationStateBuilder(gray = False),
-									rendering = False, randomized_door = True, stochastic_dynamic=False, map_id=999, setting = environment)
+	agent_host = MazeNavigationEnvironment(MazeNavigationStateBuilder(gray=False),
+									rendering=True, randomized_door=True, stochastic_dynamic=False, map_id=999, setting=environment)
 
 	agent = Agent(mode, environment, direction)
 
@@ -569,6 +577,8 @@ def main(macro_action, train_or_test, environment, validation):
 		world_state = agent_host.state
 
 		# -- run the agent in the world -- #
+		# TODO: The main difference between BC and DAGGER is here.
+		# TODO: DAGGER will turn off the warmstart when iteration reaches 200
 		if i >200:
 			agent.turn_off_warmstart()
 		

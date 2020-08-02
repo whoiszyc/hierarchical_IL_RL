@@ -93,6 +93,8 @@ class MazeMDP(MDP):
         #grid.reverse() ## because we want row 0 on bottom, not on top
         MDP.__init__(self, init, actlist = orientations, terminals = terminals, gamma = gamma)
         update(self, grid=grid, rows = len(grid), cols = len(grid[0]))
+
+        # TODO: grid=reward_description. Here we copy reward to the MazeMDP object
         for x in range(self.cols):
             for y in range(self.rows):
                 self.reward[x, y] = grid[x][y]

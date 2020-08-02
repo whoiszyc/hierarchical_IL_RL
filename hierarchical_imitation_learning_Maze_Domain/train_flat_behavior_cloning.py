@@ -126,12 +126,16 @@ class NN:
 								optimizer = Adam(lr = LEARNING_RATE))
 		#self.model.compile(loss = {'action_outputs':'categorical_crossentropy', 'goal_output':'binary_crossentropy'}, 
 		#					optimizer = Adam(lr = LEARNING_RATE), loss_weights={'action_outputs':1., 'goal_output':10.})
+
 		# Print out model dimensions
 		logger.warning('Model input dim: ' + str(self.model.layers[0].input_shape))
 		for l in self.model.layers:
 			logger.warning('Output dim: ' + str(l.output_shape))
 		# store history of length TRAIN_HIST_SIZE
 		#time.sleep(30)
+
+		# TODO: relay history defined here
+		# TODO: need to check where "replay_hist" is added
 		self.replay_hist = [None] * TRAIN_HIST_SIZE
 		self.ind = 0
 
@@ -140,15 +144,21 @@ class NN:
 
 
 	def collect(self, processed, expert_a):
+		# TODO: "replay_hist" has been added through "collect" function
 		if processed is not None:
+			# TODO: "processed: is the system state -- input to the neural net
+			# TODO: "replay_hist" stores the state-action pair (state, action)
 			self.replay_hist[self.ind] = (processed.astype(np.float32), expert_a.astype(np.float32))
 			self.ind = (self.ind + 1) % TRAIN_HIST_SIZE
 
+
 	def end_collect(self):
+		# TODO: training is performed using "end_collect" function
 		try:
 			return self.train()
 		except:
 			return
+
 
 	def _replay_to_train(self, replay_data_batched):
 		batch_size = len(replay_data_batched)
@@ -167,7 +177,11 @@ class NN:
 		# return training data
 		return x, expert_a, goal
 
+
 	def train(self):
+		# TODO: two datasets are important
+		# TODO: replay_hist
+		# TODO: _selected_replay_data
 		# if not reached TRAIN_HIST_SIZE yet, then get the number of samples
 		self._num_valid = self.ind if self.replay_hist[-1] == None else TRAIN_HIST_SIZE
 		#self._samples = np.random.choice(range(self._num_valid), size=BATCH_SIZE)
@@ -185,9 +199,10 @@ class NN:
 		self._train_y = np.reshape([self._selected_replay_data[i][1] for i in xrange(BATCH_SIZE)],(BATCH_SIZE,4))
 		#self._train_g = np.reshape([self._selected_replay_data[i][2] for i in xrange(BATCH_SIZE)],(BATCH_SIZE,1))
 
-		self.model.fit(self._train_x, self._train_y, batch_size = 32, epochs = 1, callbacks = [self._history])
+		self.model.fit(self._train_x, self._train_y, batch_size=32, epochs=1, callbacks=[self._history])
 		#logger.info("Loss: " + str(self._history.losses))
 		return self._history.losses
+
 
 	def predict(self, x, batch_size=1):
 		"""predict on (a batch of) x"""
@@ -249,24 +264,30 @@ class Agent(Visualizable):
 		self._expert_act = True
 		self.warmstart = True
 
+
 	def turn_off_warmstart(self):
 		self.warmstart = False
+
 
 	def collect_experience(self, prev_state, agent_action, reward, next_state, expert_advice):
 		self.experience[self.ind] = (prev_state.astype(np.float32), agent_action, reward, next_state.astype(np.float32), expert_advice.astype(np.float32))
 		self.ind = (self.ind + 1) % EXPERIENCE_MEMORY
 
+
 	def save_experience(self, fileName):
 		with open(fileName, 'wb') as f:
 			pickle.dump(self.experience, f, protocol=pickle.HIGHEST_PROTOCOL)
+
 
 	def save_success_record(self, fileName):
 		with open(fileName, 'wb') as f:
 			pickle.dump(self._stats_performance, f, protocol=pickle.HIGHEST_PROTOCOL)
 
+
 	def change_expert(self, dictionary):
 		self.expert = dictionary
 		#self.expert = tables[index].copy()
+
 
 	def sample(self, prob_vec, temperature=0.1):
 		self._prob_pred = np.log(prob_vec) / temperature
@@ -274,7 +295,9 @@ class Agent(Visualizable):
 		self._choices = range(len(self._prob_pred))
 		return np.random.choice(self._choices, p=self._dist)
 
+
 	def get_expert_policy(self, agent_host):
+		# TODO: create corresponding reward and terminal condition datasets for the newly generated map
 		reward_description = []
 		terminal_description = []
 		for x in range(17):
@@ -291,11 +314,21 @@ class Agent(Visualizable):
 		            row_reward.append(1)
 		            terminal_description.append((x,y))
 		    reward_description.append(row_reward)
+
+		# TODO: just for study purpose to visualize data
+		aa0 = np.array(agent_host._world)
+		aa1 = np.array(reward_description)
+		aa2 = np.array(terminal_description)
+
+		# TODO: formulate MDP based on the curremt map
 		maze = MazeMDP(reward_description, terminal_description, init = agent_host.agent_loc, gamma = 0.99)
+
+		# TODO: solve the MDP using value iterations (DP algorithm)
 		value = value_iteration(maze)
 		policy = best_policy(maze, value)
 		self.expert= {}
-		
+
+		# TODO: pass the expert policy
 		for row in range(17):
 		    for col in range(17):
 		        if policy[(col, row)] == (0,-1):
@@ -306,6 +339,8 @@ class Agent(Visualizable):
 		            self.expert[(col,row)] = 2 #W
 		        elif policy[(col, row)] == (1,0):
 		            self.expert[(col,row)] = 3 #E
+
+		print(self.expert)
 
 
 	def act(self, world_state, agent_host, prev_r):
@@ -319,6 +354,7 @@ class Agent(Visualizable):
 
 		assert self.expert[self._table_loc] is not None
 
+		# TODO: one-hot encoding of the expert action
 		expert_a = self.expert[self._table_loc]
 		self.expert_a = np.zeros((1,len(ACTIONS)))
 		self.expert_a[0,expert_a] = 1.
@@ -334,6 +370,7 @@ class Agent(Visualizable):
 		self.model.collect(self._state, self.expert_a)
 		self.total_steps += 1
 
+		# TODO: execute the action into the environment
 		agent_host._update(ACTIONS[self._a])
 
 		## after executing the action, collect this transition into the separate memory bank, to aid the reinforcement learning process
@@ -342,6 +379,7 @@ class Agent(Visualizable):
 		self.collect_experience(world_state, self._a, reward, next_state, self.expert_a)
 
 		return prev_r
+
 
 	def run(self, agent_host):
 		"""run the agent on the world"""
@@ -355,13 +393,22 @@ class Agent(Visualizable):
 
 		self._world_state = agent_host.state
 
+		# TODO: for debug and study purpose; investgate agent_host.state
+		aa0 = np.array(agent_host._world)
+		aa1 = np.array(agent_host.state[:, :, 0])
+		aa2 = np.array(agent_host.state[:, :, 1])
+		aa3 = np.array(agent_host.state[:, :, 2])
+
 		if agent_host._rendering:
 			agent_host.render()
 			time.sleep(0.1) # (let the Mod reset)
 
 		# take first action
 		#try:
-		self._total_reward += self.act(self._world_state,agent_host,self._prev_r)
+		# TODO: execute the action
+		# TODO: store the (state,action) pair using "collect" function in self.model.replay_hist for imitation learning
+		# TODO: store the (previous_state,action,reward,next_state,expert_action) pair using "collect_experience" function in self.experience for reinforcement learning
+		self._total_reward += self.act(self._world_state, agent_host, self._prev_r)
 		self._step +=1
 		if agent_host._rendering:
 			agent_host.render()
@@ -386,12 +433,14 @@ class Agent(Visualizable):
 				break
 		self._total_reward += agent_host.reward
 		
-		if self.mode == 'train' and self.total_steps>=100:
+		if self.mode == 'train' and self.total_steps >= 50:
+			# TODO: training is perform in "end_collect" function
 			loss = self.model.end_collect()
 			print loss[-1]
 			self._stats_loss.append(sum(loss)/len(loss))
 
 		return self._total_reward
+
 
 	def act_test(self, world_state, agent_host, prev_r):
 		self._state = np.reshape(world_state, (1,)+self.input_shape)
@@ -404,6 +453,7 @@ class Agent(Visualizable):
 		## after executing the action, collect this transition into the separate memory bank, to aid the reinforcement learning process
 		reward = agent_host.reward
 		return prev_r
+
 
 	def run_test(self, agent_host):
 		"""run the agent on the world"""
@@ -510,8 +560,10 @@ class Agent(Visualizable):
 			# Reset
 			self._stats_loss = []
 			self._stats_rewards = []
+
 	def load_model(self, fileName):
 		self.model.model.load_weights(fileName)
+
 
 def main(macro_action, train_or_test, environment, validation):
 	global NUM_EPISODES
@@ -521,12 +573,13 @@ def main(macro_action, train_or_test, environment, validation):
 
 	MODEL_NAME = 'go_'+direction+'_'+environment+'_acrossRoom_start_3264256_3channels_'
 
-
+	# TODO: create environment object
 	agent_host = MazeNavigationEnvironment(MazeNavigationStateBuilder(gray = False),
 									rendering = False, randomized_door = True, stochastic_dynamic=False, map_id=999, setting = environment)
-
+	# TODO: create agent object
 	agent = Agent(mode, environment, direction)
 
+	# TODO: map_id is like the random seed
 	map_ids_to_use = range(1000,2000)
 
 	if mode == 'test':
@@ -539,30 +592,37 @@ def main(macro_action, train_or_test, environment, validation):
 
 		#logger.debug("Spinning up a new environment and expert")
 
+		# TODO: map_id controls the random map generation
 		new_map_id = np.random.choice(range(1000))
 		print 
 		print "--------------------------------------------------------------------"
 		logger.debug("Starting mission")
-		
+
+		# TODO: initialize new enviorment for the current iteration
+		# TODO: agent_host is an object that convey the enviorment information
 		agent_host.change_map_and_reset(new_map_id)
+
+		# TODO: obtain expert policy by formulating the MDP that is solved by dynamic programming (value iterations)
+		# TODO: We will replace this part by MIP programming
+		# TODO: note that expert only retrieve information from the environment but will not change it
 		agent.get_expert_policy(agent_host)
 
-		#print "expert table number:", agent_host.map_id
+		print "expert table number:", agent_host.map_id
 
 		world_state = agent_host.state
 
 		# -- run the agent in the world -- #
-		if i >NUM_EPISODES:
+		if i > NUM_EPISODES:
 			agent.turn_off_warmstart()
-		
+
+		# TODO: executes the expert policy and perform imitation learning
 		cumulative_reward = agent.run(agent_host)
 
 		#### RUN THE ACTUAL VALIDATION
+		# TODO: test current trained policy network using new environment
 		new_map_id = np.random.choice(map_ids_to_use)
-
 		agent_host.change_map_and_reset(new_map_id)
 		cumulative_reward = agent.run_test(agent_host)
-
 
 		agent.inject_summaries(i)
 

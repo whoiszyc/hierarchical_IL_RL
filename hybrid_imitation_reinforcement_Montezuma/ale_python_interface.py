@@ -9,8 +9,7 @@ import numpy as np
 from numpy.ctypeslib import as_ctypes
 import os
 
-ale_lib = cdll.LoadLibrary(os.path.join(os.path.dirname(__file__),
-                                        'libale_c.so'))
+ale_lib = cdll.LoadLibrary(os.path.join(os.path.dirname(__file__),'libale_c.so'))
 
 ale_lib.ALE_new.argtypes = None
 ale_lib.ALE_new.restype = c_void_p
