@@ -323,14 +323,14 @@ class Agent(Visualizable):
 		self._prev_x = agent_host._agent_loc[0]
 		self._prev_z = agent_host._agent_loc[1]
 		#self._table_loc = '%s:%s' % (self._prev_x,self._prev_z)
-		self._table_loc = (self._prev_x,self._prev_z)
+		self._table_loc = (self._prev_x, self._prev_z)
 		#print self.expert[table_loc]
 
-		#assert self.expert[self._table_loc] is not None
+		# assert self.expert[self._table_loc] is not None
 		if agent_host._world[self._prev_x, self._prev_z] == 'x':
-			## dealing with trap state
-			possible_actions = [(0,-1), (0,1), (-1,0), (1,0)]
-			best_direction = (0,0)
+			# dealing with trap state
+			possible_actions = [(0, -1), (0, 1), (-1, 0), (1, 0)]
+			best_direction = (0, 0)
 			max_value = -1.0
 			for action in range(4):
 				direction = possible_actions[action]
@@ -344,10 +344,11 @@ class Agent(Visualizable):
 			assert self.expert[self._table_loc] is not None
 			expert_a = self.expert[self._table_loc]
 		
-		self.expert_a = np.zeros((1,len(ACTIONS)))
-		self.expert_a[0,expert_a] = 1.
+		self.expert_a = np.zeros((1, len(ACTIONS)))
+		self.expert_a[0, expert_a] = 1.
 
 		# collect into experience memory
+		# TODO: The difference between BC and DAGGER is that DAGGER use trained policy to explore more states but still store expert policy
 		# TODO: difference between BC and DAGGER is that DAGGER use warm start in the middle of the training
 		if self.warmstart:
 			#self._a = self.sample(self.expert_a[0])
@@ -577,9 +578,9 @@ def main(macro_action, train_or_test, environment, validation):
 		world_state = agent_host.state
 
 		# -- run the agent in the world -- #
-		# TODO: The main difference between BC and DAGGER is here.
-		# TODO: DAGGER will turn off the warmstart when iteration reaches 200
-		if i >200:
+		# TODO: The difference between BC and DAGGER is that DAGGER use trained policy to explore more states but still store expert policy.
+		# TODO: Therefore, when warmstart is turned off, the agent begins to explore states using trained policy and store expert policy for training
+		if i > 200:
 			agent.turn_off_warmstart()
 		
 		cumulative_reward = agent.run(agent_host)

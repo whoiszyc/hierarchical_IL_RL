@@ -3,16 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="74b0d39a-b0dc-4034-860c-0a21b01947d0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hierarchical_imitation_learning_Maze_Domain/train_flat_dagger.py" beforeDir="false" afterPath="$PROJECT_DIR$/hierarchical_imitation_learning_Maze_Domain/train_flat_dagger.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hierarchical_imitation_learning_Maze_Domain/train_hierarchical_behavior_cloning.py" beforeDir="false" afterPath="$PROJECT_DIR$/hierarchical_imitation_learning_Maze_Domain/train_hierarchical_behavior_cloning.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>_replay_to_train</find>
-    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -27,7 +24,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.train_flat_behavior_cloning">
+  <component name="RunManager" selected="Python.train_hierarchical_behavior_cloning">
     <configuration name="run_hybrid_atari_experiment" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="hierarchical_IL_RL" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -91,13 +88,34 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="train_hierarchical_behavior_cloning" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="hierarchical_IL_RL" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/hierarchical_imitation_learning_Maze_Domain" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hierarchical_imitation_learning_Maze_Domain/train_hierarchical_behavior_cloning.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.train_flat_behavior_cloning" />
-        <item itemvalue="Python.train_flat_behavior_cloning" />
-        <item itemvalue="Python.train_flat_behavior_cloning" />
-        <item itemvalue="Python.run_hybrid_atari_experiment" />
+        <item itemvalue="Python.train_hierarchical_behavior_cloning" />
         <item itemvalue="Python.train_flat_dagger" />
+        <item itemvalue="Python.train_flat_behavior_cloning" />
+        <item itemvalue="Python.train_flat_behavior_cloning" />
+        <item itemvalue="Python.train_flat_behavior_cloning" />
       </list>
     </recent_temporary>
   </component>
@@ -125,6 +143,58 @@
     </todo-panel>
   </component>
   <component name="WindowStateProjectService">
+    <state width="1899" height="272" key="GridCell.Tab.0.bottom" timestamp="1597093737544">
+      <screen x="0" y="23" width="1920" height="1002" />
+    </state>
+    <state width="1899" height="272" key="GridCell.Tab.0.bottom/0.23.1920.1001/1920.23.1920.1057@0.23.1920.1001" timestamp="1597093613552" />
+    <state width="1899" height="272" key="GridCell.Tab.0.bottom/0.23.1920.1002/1920.23.1920.1057@0.23.1920.1002" timestamp="1597093737544" />
+    <state width="1899" height="293" key="GridCell.Tab.0.bottom/0.23.1920.1003/1920.23.1920.1057@0.23.1920.1003" timestamp="1597070651515" />
+    <state width="1899" height="294" key="GridCell.Tab.0.bottom/0.23.1920.997/1920.23.1920.1057@0.23.1920.997" timestamp="1597086016316" />
+    <state width="1899" height="272" key="GridCell.Tab.0.center" timestamp="1597093737543">
+      <screen x="0" y="23" width="1920" height="1002" />
+    </state>
+    <state width="1899" height="272" key="GridCell.Tab.0.center/0.23.1920.1001/1920.23.1920.1057@0.23.1920.1001" timestamp="1597093613550" />
+    <state width="1899" height="272" key="GridCell.Tab.0.center/0.23.1920.1002/1920.23.1920.1057@0.23.1920.1002" timestamp="1597093737543" />
+    <state width="1899" height="293" key="GridCell.Tab.0.center/0.23.1920.1003/1920.23.1920.1057@0.23.1920.1003" timestamp="1597070651513" />
+    <state width="1899" height="294" key="GridCell.Tab.0.center/0.23.1920.997/1920.23.1920.1057@0.23.1920.997" timestamp="1597086016315" />
+    <state width="1899" height="272" key="GridCell.Tab.0.left" timestamp="1597093737543">
+      <screen x="0" y="23" width="1920" height="1002" />
+    </state>
+    <state width="1899" height="272" key="GridCell.Tab.0.left/0.23.1920.1001/1920.23.1920.1057@0.23.1920.1001" timestamp="1597093613546" />
+    <state width="1899" height="272" key="GridCell.Tab.0.left/0.23.1920.1002/1920.23.1920.1057@0.23.1920.1002" timestamp="1597093737543" />
+    <state width="1899" height="293" key="GridCell.Tab.0.left/0.23.1920.1003/1920.23.1920.1057@0.23.1920.1003" timestamp="1597070651513" />
+    <state width="1899" height="294" key="GridCell.Tab.0.left/0.23.1920.997/1920.23.1920.1057@0.23.1920.997" timestamp="1597086016314" />
+    <state width="1899" height="272" key="GridCell.Tab.0.right" timestamp="1597093737544">
+      <screen x="0" y="23" width="1920" height="1002" />
+    </state>
+    <state width="1899" height="272" key="GridCell.Tab.0.right/0.23.1920.1001/1920.23.1920.1057@0.23.1920.1001" timestamp="1597093613551" />
+    <state width="1899" height="272" key="GridCell.Tab.0.right/0.23.1920.1002/1920.23.1920.1057@0.23.1920.1002" timestamp="1597093737544" />
+    <state width="1899" height="293" key="GridCell.Tab.0.right/0.23.1920.1003/1920.23.1920.1057@0.23.1920.1003" timestamp="1597070651514" />
+    <state width="1899" height="294" key="GridCell.Tab.0.right/0.23.1920.997/1920.23.1920.1057@0.23.1920.997" timestamp="1597086016315" />
+    <state width="1899" height="272" key="GridCell.Tab.1.bottom" timestamp="1597093616055">
+      <screen x="0" y="23" width="1920" height="1001" />
+    </state>
+    <state width="1899" height="272" key="GridCell.Tab.1.bottom/0.23.1920.1001/1920.23.1920.1057@0.23.1920.1001" timestamp="1597093616055" />
+    <state width="1899" height="293" key="GridCell.Tab.1.bottom/0.23.1920.1002/1920.23.1920.1057@0.23.1920.1002" timestamp="1597070636008" />
+    <state width="1899" height="294" key="GridCell.Tab.1.bottom/0.23.1920.997/1920.23.1920.1057@0.23.1920.997" timestamp="1597086018472" />
+    <state width="1899" height="272" key="GridCell.Tab.1.center" timestamp="1597093616054">
+      <screen x="0" y="23" width="1920" height="1001" />
+    </state>
+    <state width="1899" height="272" key="GridCell.Tab.1.center/0.23.1920.1001/1920.23.1920.1057@0.23.1920.1001" timestamp="1597093616054" />
+    <state width="1899" height="293" key="GridCell.Tab.1.center/0.23.1920.1002/1920.23.1920.1057@0.23.1920.1002" timestamp="1597070636007" />
+    <state width="1899" height="294" key="GridCell.Tab.1.center/0.23.1920.997/1920.23.1920.1057@0.23.1920.997" timestamp="1597086018471" />
+    <state width="1899" height="272" key="GridCell.Tab.1.left" timestamp="1597093616054">
+      <screen x="0" y="23" width="1920" height="1001" />
+    </state>
+    <state width="1899" height="272" key="GridCell.Tab.1.left/0.23.1920.1001/1920.23.1920.1057@0.23.1920.1001" timestamp="1597093616054" />
+    <state width="1899" height="293" key="GridCell.Tab.1.left/0.23.1920.1002/1920.23.1920.1057@0.23.1920.1002" timestamp="1597070636006" />
+    <state width="1899" height="294" key="GridCell.Tab.1.left/0.23.1920.997/1920.23.1920.1057@0.23.1920.997" timestamp="1597086018471" />
+    <state width="1899" height="272" key="GridCell.Tab.1.right" timestamp="1597093616055">
+      <screen x="0" y="23" width="1920" height="1001" />
+    </state>
+    <state width="1899" height="272" key="GridCell.Tab.1.right/0.23.1920.1001/1920.23.1920.1057@0.23.1920.1001" timestamp="1597093616055" />
+    <state width="1899" height="293" key="GridCell.Tab.1.right/0.23.1920.1002/1920.23.1920.1057@0.23.1920.1002" timestamp="1597070636007" />
+    <state width="1899" height="294" key="GridCell.Tab.1.right/0.23.1920.997/1920.23.1920.1057@0.23.1920.997" timestamp="1597086018472" />
     <state x="469" y="158" key="SettingsEditor" timestamp="1597032963620">
       <screen x="0" y="23" width="1920" height="995" />
     </state>
@@ -160,7 +230,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/hierarchical_imitation_learning_Maze_Domain/train_flat_dagger.py</url>
-          <line>625</line>
+          <line>626</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -179,9 +249,59 @@
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/hierarchical_imitation_learning_Maze_Domain/train_flat_dagger.py</url>
-          <line>191</line>
-          <option name="timeStamp" value="11" />
+          <url>file://$PROJECT_DIR$/hierarchical_imitation_learning_Maze_Domain/train_hierarchical_behavior_cloning.py</url>
+          <line>886</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/hierarchical_imitation_learning_Maze_Domain/train_hierarchical_behavior_cloning.py</url>
+          <line>556</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/hierarchical_imitation_learning_Maze_Domain/train_hierarchical_behavior_cloning.py</url>
+          <line>644</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/hierarchical_imitation_learning_Maze_Domain/train_hierarchical_behavior_cloning.py</url>
+          <line>669</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/hierarchical_imitation_learning_Maze_Domain/train_hierarchical_behavior_cloning.py</url>
+          <line>454</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/hierarchical_imitation_learning_Maze_Domain/train_hierarchical_behavior_cloning.py</url>
+          <line>532</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/hierarchical_imitation_learning_Maze_Domain/train_hierarchical_behavior_cloning.py</url>
+          <line>477</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/hierarchical_imitation_learning_Maze_Domain/train_hierarchical_behavior_cloning.py</url>
+          <line>499</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/hierarchical_imitation_learning_Maze_Domain/train_hierarchical_behavior_cloning.py</url>
+          <line>582</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/hierarchical_imitation_learning_Maze_Domain/train_hierarchical_behavior_cloning.py</url>
+          <line>656</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/hierarchical_imitation_learning_Maze_Domain/train_hierarchical_behavior_cloning.py</url>
+          <line>490</line>
+          <option name="timeStamp" value="28" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
