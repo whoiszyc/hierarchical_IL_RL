@@ -535,9 +535,9 @@ class Agent(Visualizable):
 			state = self.sa_trajectory[index][0]
 			action = self.sa_trajectory[index][1]
 			if index in change_point and index > 0:
-				self.expert_micro_feedback[state] = (action, 1)
+				self.expert_micro_feedback[state] = (action, 1)  # Here "1" means termination in this room
 			else:
-				self.expert_micro_feedback[state] = (action, 0)
+				self.expert_micro_feedback[state] = (action, 0)  # Here "0" means continuation in this room
 
 
 	def choose_macro_action(self, world_state):

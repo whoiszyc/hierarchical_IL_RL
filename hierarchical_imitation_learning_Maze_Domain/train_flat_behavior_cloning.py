@@ -421,6 +421,9 @@ class Agent(Visualizable):
 
 			if self._step<HORIZON:
 				try:
+					# TODO: execute the action
+					# TODO: store the (state,action) pair using "collect" function in self.model.replay_hist for imitation learning
+					# TODO: store the (previous_state,action,reward,next_state,expert_action) pair using "collect_experience" function in self.experience for reinforcement learning
 					self._total_reward += self.act(self._world_state, agent_host, self._prev_r)
 					self._step += 1
 					if agent_host._rendering:
